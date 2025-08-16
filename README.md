@@ -77,3 +77,6 @@ HireLens/
 - 🌐 Extend to LinkedIn/Indeed scraping for live job detection.
 - 📱 Build a React-based frontend for better UI.
 - ⚡️ Try advanced models (XGBoost, LSTM, Transformers).
+
+## 📜 License
+This project is licensed under the MIT License.
