@@ -26,8 +26,8 @@ The project is built with **Flask** for deployment, allowing users to paste job 
 - **Joblib** for model persistence  
 
 ---
-```
 ## 📂 Project Structure
+```
 HireLens/
 │── app.py                  # Flask app 
 │── model.joblib            # Trained ML model (Random Forest)
