@@ -26,7 +26,7 @@ The project is built with **Flask** for deployment, allowing users to paste job 
 - **Joblib** for model persistence  
 
 ---
-
+```
 ## 📂 Project Structure
 HireLens/
 │── app.py                  # Flask app 
@@ -49,7 +49,7 @@ HireLens/
     ├── index.html          # Homepage (form to paste job post)
     ├── result.html         # Prediction result page
     └── about.html          # Optional: About project
-
+```
 
 ---
 
