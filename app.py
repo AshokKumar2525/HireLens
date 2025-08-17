@@ -209,9 +209,7 @@ def index():
 
     return render_template("index.html",
                            prediction=prediction,
-                           prob_fake=prob_fake,
-                           extracted=extracted,
-                           text_val=text_val)
+                           prob_fake=prob_fake)
 
 
 @app.route("/health")
@@ -220,4 +218,4 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5002, debug=True)

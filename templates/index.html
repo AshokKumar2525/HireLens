@@ -15,7 +15,7 @@
 
     <form method="POST" action="/">
       <h3>Paste Job Description</h3>
-      <textarea name="job_post" placeholder="Paste job advertisement text here...">{{ text_val }}</textarea>
+      <textarea name="job_post" placeholder="Paste job advertisement text here..."></textarea>
 
       <button type="submit">Analyze</button>
     </form>
@@ -37,28 +37,6 @@
         {% if prob_fake is not none %}
           <p class="prob">Probability (Fake): {{ '{:.1f}%'.format(prob_fake * 100) }}</p>
         {% endif %}
-      </section>
-
-      <section class="details">
-        <h3>Extracted details</h3>
-        <ul>
-          <li><strong>Title:</strong> {{ extracted.title or '—' }}</li>
-          <li><strong>Location:</strong> {{ extracted.location or '—' }}</li>
-          <li><strong>Emails:</strong> {{ extracted.emails|join(', ') if extracted.emails else '—' }}</li>
-          <li><strong>Phones:</strong> {{ extracted.phones|join(', ') if extracted.phones else '—' }}</li>
-          <li><strong>Links:</strong>
-            {% if extracted.links %}
-              <ul>
-                {% for l in extracted.links %}
-                  <li><a href="{{ l }}" target="_blank" rel="noopener">{{ l }}</a></li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              —
-            {% endif %}
-          </li>
-          <li><strong>Word count:</strong> {{ extracted.length }}</li>
-        </ul>
       </section>
     {% endif %}
 
