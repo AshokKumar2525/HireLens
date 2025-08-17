@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HireLens — Fake Job Detector</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>HireLens</h1>
+      <p class="subtitle">Check if a job posting is genuine or fake</p>
+    </header>
+
+    <form method="POST" action="/">
+      <h3>Paste Job Description</h3>
+      <textarea name="job_post" placeholder="Paste job advertisement text here...">{{ text_val }}</textarea>
+
+      <button type="submit">Analyze</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-wrap">
+          {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% if prediction %}
+      <section class="result">
+        <h2>Result</h2>
+        <div class="pill">{{ prediction }}</div>
+        {% if prob_fake is not none %}
+          <p class="prob">Probability (Fake): {{ '{:.1f}%'.format(prob_fake * 100) }}</p>
+        {% endif %}
+      </section>
+
+      <section class="details">
+        <h3>Extracted details</h3>
+        <ul>
+          <li><strong>Title:</strong> {{ extracted.title or '—' }}</li>
+          <li><strong>Location:</strong> {{ extracted.location or '—' }}</li>
+          <li><strong>Emails:</strong> {{ extracted.emails|join(', ') if extracted.emails else '—' }}</li>
+          <li><strong>Phones:</strong> {{ extracted.phones|join(', ') if extracted.phones else '—' }}</li>
+          <li><strong>Links:</strong>
+            {% if extracted.links %}
+              <ul>
+                {% for l in extracted.links %}
+                  <li><a href="{{ l }}" target="_blank" rel="noopener">{{ l }}</a></li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              —
+            {% endif %}
+          </li>
+          <li><strong>Word count:</strong> {{ extracted.length }}</li>
+        </ul>
+      </section>
+    {% endif %}
+
+    <footer>
+      <p>© {{ 2025 }} HireLens</p>
+    </footer>
+  </div>
+</body>
+</html>
