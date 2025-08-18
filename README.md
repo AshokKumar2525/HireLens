@@ -40,11 +40,6 @@ HireLens/
 ├── static/                 # Static assets
 │   ├── css/
 │   │   └── style.css
-│   ├── js/
-│   │   └── script.js
-│   └── images/
-│       └── logo.png
-│
 └── templates/              
     ├── index.html          # Homepage (form to paste job post)
     ├── result.html         # Prediction result page
